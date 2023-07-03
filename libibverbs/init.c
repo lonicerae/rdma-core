@@ -665,6 +665,9 @@ static void verbs_set_log_file(void)
 
 int ibverbs_init(void)
 {
+	/* hack for reproducing the hang issue of wireshark */
+	fprintf(stderr, PFX "BAD MESSAGES POLLUTE STDERR!\n");
+
 	if (check_env("RDMAV_FORK_SAFE") || check_env("IBV_FORK_SAFE"))
 		if (ibv_fork_init())
 			fprintf(stderr, PFX "Warning: fork()-safety requested "
